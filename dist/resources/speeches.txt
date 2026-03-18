@@ -112,3 +112,4 @@ HINT: The next time you go outside, make sure to slow down. I would hate to see 
 You don't have to be the bad guy. You are the most talented, most interesting, and most extraordinary person in the universe. And you are capable of amazing things, because you are special.
 There is no place like "127.0.0.1".
 My name is Anderdingus. And I got... Sour Patch... Watermelon. Sour Patch... Scrawberries.
+HINT: Remember, swapping to your secondary is always faster than reloading.
