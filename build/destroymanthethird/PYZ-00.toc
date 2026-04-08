@@ -1,5 +1,5 @@
 ('C:\\Users\\Hannes '
- 'Koell\\Desktop\\destroyman\\build\\destroymanthethird\\PYZ-00.pyz',
+ 'Koell\\Desktop\\diii\\build\\destroymanthethird\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\__init__.py',
@@ -108,14 +108,6 @@
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImageColor.py',
    'PYMODULE'),
-  ('PIL.ImageDraw',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImageDraw.py',
-   'PYMODULE'),
-  ('PIL.ImageDraw2',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImageDraw2.py',
-   'PYMODULE'),
   ('PIL.ImageFile',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImageFile.py',
@@ -123,10 +115,6 @@
   ('PIL.ImageFilter',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImageFilter.py',
-   'PYMODULE'),
-  ('PIL.ImageFont',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImageFont.py',
    'PYMODULE'),
   ('PIL.ImageMath',
    'C:\\Users\\Hannes '
@@ -144,10 +132,6 @@
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImagePalette.py',
    'PYMODULE'),
-  ('PIL.ImagePath',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImagePath.py',
-   'PYMODULE'),
   ('PIL.ImageQt',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImageQt.py',
@@ -159,10 +143,6 @@
   ('PIL.ImageShow',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImageShow.py',
-   'PYMODULE'),
-  ('PIL.ImageText',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\PIL\\ImageText.py',
    'PYMODULE'),
   ('PIL.ImageTk',
    'C:\\Users\\Hannes '
@@ -332,14 +312,6 @@
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\__future__.py',
    'PYMODULE'),
-  ('_aix_support',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_aix_support.py',
-   'PYMODULE'),
-  ('_bootsubprocess',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_bootsubprocess.py',
-   'PYMODULE'),
   ('_compat_pickle',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\_compat_pickle.py',
@@ -383,10 +355,6 @@
   ('base64',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\base64.py',
-   'PYMODULE'),
-  ('bdb',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\bdb.py',
    'PYMODULE'),
   ('bisect',
    'C:\\Users\\Hannes '
@@ -439,18 +407,6 @@
   ('charset_normalizer.version',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\charset_normalizer\\version.py',
-   'PYMODULE'),
-  ('cmd',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\cmd.py',
-   'PYMODULE'),
-  ('code',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\code.py',
-   'PYMODULE'),
-  ('codeop',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\codeop.py',
    'PYMODULE'),
   ('colorsys',
    'C:\\Users\\Hannes '
@@ -604,10 +560,6 @@
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\gettext.py',
    'PYMODULE'),
-  ('glob',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\glob.py',
-   'PYMODULE'),
   ('gzip',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\gzip.py',
@@ -619,14 +571,6 @@
   ('hmac',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\hmac.py',
-   'PYMODULE'),
-  ('html',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\html\\__init__.py',
-   'PYMODULE'),
-  ('html.entities',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\html\\entities.py',
    'PYMODULE'),
   ('http',
    'C:\\Users\\Hannes '
@@ -643,10 +587,6 @@
   ('http.cookies',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\http\\cookies.py',
-   'PYMODULE'),
-  ('http.server',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\http\\server.py',
    'PYMODULE'),
   ('idna',
    'C:\\Users\\Hannes '
@@ -671,10 +611,6 @@
   ('idna.uts46data',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\idna\\uts46data.py',
-   'PYMODULE'),
-  ('imp',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\imp.py',
    'PYMODULE'),
   ('importlib',
    'C:\\Users\\Hannes '
@@ -816,269 +752,17 @@
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\opcode.py',
    'PYMODULE'),
-  ('packaging',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\__init__.py',
-   'PYMODULE'),
-  ('packaging._elffile',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\_elffile.py',
-   'PYMODULE'),
-  ('packaging._manylinux',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\_manylinux.py',
-   'PYMODULE'),
-  ('packaging._musllinux',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\_musllinux.py',
-   'PYMODULE'),
-  ('packaging._parser',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\_parser.py',
-   'PYMODULE'),
-  ('packaging._structures',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\_structures.py',
-   'PYMODULE'),
-  ('packaging._tokenizer',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\_tokenizer.py',
-   'PYMODULE'),
-  ('packaging.licenses',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\licenses\\__init__.py',
-   'PYMODULE'),
-  ('packaging.licenses._spdx',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\licenses\\_spdx.py',
-   'PYMODULE'),
-  ('packaging.markers',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\markers.py',
-   'PYMODULE'),
-  ('packaging.metadata',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\metadata.py',
-   'PYMODULE'),
-  ('packaging.pylock',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\pylock.py',
-   'PYMODULE'),
-  ('packaging.requirements',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\requirements.py',
-   'PYMODULE'),
-  ('packaging.specifiers',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\specifiers.py',
-   'PYMODULE'),
-  ('packaging.tags',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\tags.py',
-   'PYMODULE'),
-  ('packaging.utils',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\utils.py',
-   'PYMODULE'),
-  ('packaging.version',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\packaging\\version.py',
-   'PYMODULE'),
   ('pathlib',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pathlib.py',
-   'PYMODULE'),
-  ('pdb',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pdb.py',
    'PYMODULE'),
   ('pickle',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pickle.py',
    'PYMODULE'),
-  ('pkg_resources',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.appdirs',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.importlib_resources',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\importlib_resources\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.importlib_resources._adapters',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\importlib_resources\\_adapters.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.importlib_resources._common',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\importlib_resources\\_common.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.importlib_resources._compat',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\importlib_resources\\_compat.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.importlib_resources._itertools',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\importlib_resources\\_itertools.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.importlib_resources._legacy',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\importlib_resources\\_legacy.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.importlib_resources.abc',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\importlib_resources\\abc.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.importlib_resources.readers',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\importlib_resources\\readers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.importlib_resources.simple',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\importlib_resources\\simple.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.jaraco',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\jaraco\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.jaraco.context',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\jaraco\\context.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.jaraco.functools',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\jaraco\\functools.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.jaraco.text',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\jaraco\\text\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.more_itertools',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\more_itertools\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.more_itertools.more',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\more_itertools\\more.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.more_itertools.recipes',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\more_itertools\\recipes.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.__about__',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging._manylinux',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_manylinux.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging._musllinux',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_musllinux.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging._structures',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.markers',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.requirements',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.specifiers',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.tags',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\tags.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.utils',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.packaging.version',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.actions',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\actions.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.common',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\common.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.core',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\core.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.diagram',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\diagram\\__init__.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.exceptions',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\exceptions.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.helpers',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\helpers.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.results',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\results.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.testing',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\testing.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.unicode',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\unicode.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.pyparsing.util',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\pyparsing\\util.py',
-   'PYMODULE'),
-  ('pkg_resources._vendor.zipp',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\_vendor\\zipp.py',
-   'PYMODULE'),
-  ('pkg_resources.extern',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pkg_resources\\extern\\__init__.py',
-   'PYMODULE'),
   ('pkgutil',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pkgutil.py',
-   'PYMODULE'),
-  ('platform',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\platform.py',
-   'PYMODULE'),
-  ('plistlib',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\plistlib.py',
    'PYMODULE'),
   ('pprint',
    'C:\\Users\\Hannes '
@@ -1087,70 +771,6 @@
   ('py_compile',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\py_compile.py',
-   'PYMODULE'),
-  ('pydoc',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pydoc.py',
-   'PYMODULE'),
-  ('pydoc_data',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pydoc_data\\__init__.py',
-   'PYMODULE'),
-  ('pydoc_data.topics',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\pydoc_data\\topics.py',
-   'PYMODULE'),
-  ('pygame',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\__init__.py',
-   'PYMODULE'),
-  ('pygame.colordict',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\colordict.py',
-   'PYMODULE'),
-  ('pygame.cursors',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\cursors.py',
-   'PYMODULE'),
-  ('pygame.fastevent',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\fastevent.py',
-   'PYMODULE'),
-  ('pygame.ftfont',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\ftfont.py',
-   'PYMODULE'),
-  ('pygame.macosx',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\macosx.py',
-   'PYMODULE'),
-  ('pygame.pkgdata',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\pkgdata.py',
-   'PYMODULE'),
-  ('pygame.sndarray',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\sndarray.py',
-   'PYMODULE'),
-  ('pygame.sprite',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\sprite.py',
-   'PYMODULE'),
-  ('pygame.surfarray',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\surfarray.py',
-   'PYMODULE'),
-  ('pygame.sysfont',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\sysfont.py',
-   'PYMODULE'),
-  ('pygame.threads',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\threads\\__init__.py',
-   'PYMODULE'),
-  ('pygame.version',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pygame\\version.py',
    'PYMODULE'),
   ('pystray',
    'C:\\Users\\Hannes '
@@ -1284,10 +904,6 @@
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\requests\\utils.py',
    'PYMODULE'),
-  ('runpy',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\runpy.py',
-   'PYMODULE'),
   ('selectors',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\selectors.py',
@@ -1312,10 +928,6 @@
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\socket.py',
    'PYMODULE'),
-  ('socketserver',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\socketserver.py',
-   'PYMODULE'),
   ('ssl',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\ssl.py',
@@ -1335,10 +947,6 @@
   ('subprocess',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\subprocess.py',
-   'PYMODULE'),
-  ('sysconfig',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\sysconfig.py',
    'PYMODULE'),
   ('tarfile',
    'C:\\Users\\Hannes '
@@ -1367,10 +975,6 @@
   ('tracemalloc',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\tracemalloc.py',
-   'PYMODULE'),
-  ('tty',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\tty.py',
    'PYMODULE'),
   ('typing',
    'C:\\Users\\Hannes '
@@ -1539,10 +1143,6 @@
   ('urllib3.util.wait',
    'C:\\Users\\Hannes '
    'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\urllib3\\util\\wait.py',
-   'PYMODULE'),
-  ('webbrowser',
-   'C:\\Users\\Hannes '
-   'Koell\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\webbrowser.py',
    'PYMODULE'),
   ('xml',
    'C:\\Users\\Hannes '
