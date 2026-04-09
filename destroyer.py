@@ -6,7 +6,32 @@ import sys
 from pystray import Icon, Menu, MenuItem
 from PIL import Image
 import requests
+import time
+from pypresence import Client
+import threading
 
+rpc = Client(client_id="1491710882495987824")
+def rpckeepalive():
+    rpc.start()
+    # keep alive
+    while True:
+        time.sleep(15)
+
+def rpcsend(randomtext):
+    rpc.send_data(1, {
+        "cmd": "SET_ACTIVITY",
+        "args": {
+            "pid": 10000,
+            "activity": {
+                "details": f"{randomtext}",
+                "assets": {
+                    "large_image": "diii_evil",  # <- your asset key
+                    "large_text": "I am a huge annoyance!"
+                }
+            }
+        },
+        "nonce": "1"
+    })
 
 def resource_path(relative_path):
     try:
@@ -113,7 +138,6 @@ first_message_shown = False
 
 def spawn_text():
     global first_message_shown, sprite
-
     text_label = QtWidgets.QLabel(window)
 
     restore_sprite = None
@@ -132,7 +156,9 @@ def spawn_text():
         )
         first_message_shown = True
     elif speeches:
-        text_label.setText(random.choice(speeches))
+        randomtext = random.choice(speeches)
+        text_label.setText(randomtext)
+        rpcsend(randomtext)
     else:
         text_label.setText("...")
 
@@ -239,6 +265,9 @@ tray_icon = create_tray_icon()
 bob_timer = QtCore.QTimer()
 bob_timer.timeout.connect(bob_squish)
 bob_timer.start(1000)
+
+thread = threading.Thread(target=rpckeepalive)
+thread.start()
 
 QtCore.QTimer.singleShot(5000, spawn_text)
 
