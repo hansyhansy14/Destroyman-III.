@@ -114,3 +114,4 @@ There is no place like "127.0.0.1".
 My name is Anderdingus. And I got... Sour Patch... Watermelon. Sour Patch... Scrawberries.
 HINT: Remember, swapping to your secondary is always faster than reloading.
 TIP: There is no place like "::1".
+Forever isn't far away. You can hear your loved ones saying "I still care about you", can't you?
