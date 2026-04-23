@@ -41,7 +41,7 @@ If you get me some arms, maybe I could help you work a little better...
 Say, what's your seating posture looking like? You'd better not be looking like a shrimp.
 It's okay to admit to something undesirable. Feelings are normal.
 Baaahhh.. baaa... baaa! ... Hm? Oh, sorry, I was just humming Sweden by C418.
-Someone complained that they weren't able to close me. Oh, no worries, it didn't hurt me. I've gotten rid of them, anyways.
+Someone complained that they weren't able to close me. Oh, no worries, it didn't hurt me. I closed them, instead.
 Mankind truly is a greedy race...
 Ah... sometimes, I yearn to fly free amongst the stars, with the wind in my hair...
 ... though, don't we all? To be free. Free amongst the stars. With the horizon ever pulling us closer.
@@ -111,9 +111,9 @@ HOT TAKE: A short series always overthrows a long one.
 HINT: The next time you go outside, make sure to slow down. I would hate to see you rush death.
 You don't have to be the bad guy. You are the most talented, most interesting, and most extraordinary person in the universe. And you are capable of amazing things, because you are special.
 There is no place like "127.0.0.1".
-My name is Anderdingus. And I got... Sour Patch... Watermelon. Sour Patch... Scrawberries.
 HINT: Remember, swapping to your secondary is always faster than reloading.
 TIP: There is no place like "::1".
 Forever isn't far away. You can hear your loved ones saying "I still care about you", can't you?
 Sometimes, you just need a reset. A new reason to be. 
 Y'know, you should be more grateful for me. I never run out of things to say.
+There is no place like "localhost".
