@@ -25,7 +25,7 @@ def rpcsend(randomtext):
             "activity": {
                 "details": f"{randomtext}",
                 "assets": {
-                    "large_image": "diii_evil",  # <- your asset key
+                    "large_image": "diii_evil", 
                     "large_text": "I am a huge annoyance!"
                 }
             }
@@ -34,11 +34,11 @@ def rpcsend(randomtext):
     })
 
 def resource_path(relative_path):
-    try:
+    if getattr(sys, 'frozen', False):
         base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-    return os.path.join(base_path, relative_path)
+        return os.path.join(base_path, relative_path)
+    else:
+        return os.path.join("dist", relative_path)
 
 
 def get_speeches(url):
@@ -108,12 +108,6 @@ def bob_squish():
     width = 200
     height = 200 if not is_squished else 190
 
-    squished_pixmap = sprite.scaled(
-        width, height,
-        QtCore.Qt.AspectRatioMode.IgnoreAspectRatio,
-        QtCore.Qt.TransformationMode.SmoothTransformation
-    )
-
     screen = app.primaryScreen()
     screen_geom = screen.geometry()
 
@@ -121,8 +115,38 @@ def bob_squish():
     anchor_y = int(screen_geom.height() * anchor_y_ratio)
 
     window.move(anchor_x, anchor_y - height)
-    label.setPixmap(squished_pixmap)
 
+
+    if arms_timer is None:
+        squished_pixmap = sprite.scaled(
+            width, height,
+            QtCore.Qt.AspectRatioMode.IgnoreAspectRatio,
+            QtCore.Qt.TransformationMode.SmoothTransformation
+        )
+        label.setPixmap(squished_pixmap)
+
+
+arms_timer = None
+
+def start_arms_dc():
+    global arms_timer
+    arms_frame = [0]  # use list to mutate inside nested func
+
+    def toggle():
+        path = "resources/skins/diii_discord_happy_up.png" if arms_frame[0] % 2 == 0 \
+               else "resources/skins/diii_discord_happy_down.png"
+        label.setPixmap(normalized_pixmap(resource_path(path)))
+        arms_frame[0] += 1
+
+    arms_timer = QtCore.QTimer()
+    arms_timer.timeout.connect(toggle)
+    arms_timer.start(1000)
+
+def stop_arms_dc():
+    global arms_timer
+    if arms_timer is not None:
+        arms_timer.stop()
+        arms_timer = None
 
 def load_speeches(path):
     with open(path, 'r', encoding="utf-8") as f:
@@ -135,19 +159,35 @@ if not speeches:
 
 first_message_shown = False
 
-
 def spawn_text():
     global first_message_shown, sprite
     text_label = QtWidgets.QLabel(window)
 
     restore_sprite = None
     '''turns discord skin into a happy lil noodle when he talks cause i love him most'''
-    if skin_index == 3:
+    if skin_index == 0:
         restore_sprite = sprite
         sprite = normalized_pixmap(
-            resource_path("resources/skins/diii_discord_happy.png")
+            resource_path("resources/skins/diii_normal_happy.png")
         )
         label.setPixmap(sprite)
+    if skin_index == 1:
+        restore_sprite = sprite
+        sprite = normalized_pixmap(
+            resource_path("resources/skins/diii_evil_trulyevil.png")
+        )
+        label.setPixmap(sprite)
+
+    if skin_index == 3:
+        start_arms_dc()
+    
+    if skin_index == 5:
+        restore_sprite = sprite
+        sprite = normalized_pixmap(
+            resource_path("resources/skins/diii_linux_typing.png")
+        )
+        label.setPixmap(sprite)
+    
 
     if not first_message_shown:
         text_label.setText(
@@ -193,6 +233,7 @@ def spawn_text():
 
     def resetsmile():
         global sprite
+        stop_arms_dc()
         text_label.deleteLater()
         if restore_sprite is not None:
             sprite = restore_sprite
@@ -266,7 +307,7 @@ bob_timer = QtCore.QTimer()
 bob_timer.timeout.connect(bob_squish)
 bob_timer.start(1000)
 
-thread = threading.Thread(target=rpckeepalive)
+thread = threading.Thread(target=rpckeepalive, daemon=True)
 thread.start()
 
 QtCore.QTimer.singleShot(5000, spawn_text)
