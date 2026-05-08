@@ -18,7 +18,7 @@ A chaotic little desktop companion made with PyQt6 that sits on your screen, tal
 
 Install Python 3.10+ and the following dependencies:
 
-```pip install PyQt6 pystray pillow requests pypresence```
+```pip install -r requirements.txt```
 
 # Controls
 
