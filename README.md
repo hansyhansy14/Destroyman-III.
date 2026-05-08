@@ -20,27 +20,6 @@ Install Python 3.10+ and the following dependencies:
 
 ```pip install PyQt6 pystray pillow requests pypresence```
 
-# Project structure
-
-project/
-│
-├── destroyer.py
-├── resources/
-│   ├── destroy.ico
-│   ├── speeches.txt
-│   ├── fonts/
-│   │   └── Fondamento-Regular.ttf
-│   └── skins/
-│       ├── diii_normal.png
-│       ├── diii_evil.png
-│       ├── diii_whatsapp.png
-│       ├── diii_discord.png
-│       ├── diii_golf.png
-│       ├── diii_linux.png
-│       ├── diii_monster.png
-│       ├── diii_cisco.png
-│       └── ...
-
 # Controls
 
 Right-click the tray icon to access:
