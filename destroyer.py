@@ -198,7 +198,6 @@ def spawn_text():
     elif speeches:
         randomtext = random.choice(speeches)
         text_label.setText(randomtext)
-        rpcsend(randomtext)
     else:
         text_label.setText("...")
 
