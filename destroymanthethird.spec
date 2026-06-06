@@ -5,7 +5,7 @@ a = Analysis(
     ['destroyer.py'],
     pathex=[],
     binaries=[],
-    datas=[('dist/resources', 'resources')],
+    datas=[('resources', 'resources')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -35,5 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['dist\\resources\\destroy.ico'],
+    icon=['resources\\destroy.ico'],
 )

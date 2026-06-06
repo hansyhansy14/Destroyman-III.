@@ -11,8 +11,13 @@ from pypresence import Client
 import threading
 import json
 
-POSITION_FILE = "position.json"
-SKIN_FILE = "skin.json"
+if getattr(sys, "frozen", False):
+    APP_DIR = os.path.dirname(sys.executable)
+else:
+    APP_DIR = os.path.dirname(os.path.abspath(__file__))
+
+POSITION_FILE = os.path.join(APP_DIR, "position.json")
+SKIN_FILE = os.path.join(APP_DIR, "skin.json")
 
 
 anchor_x_ratio = 1.0
