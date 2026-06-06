@@ -9,6 +9,59 @@ import requests
 import time
 from pypresence import Client
 import threading
+import json
+
+POSITION_FILE = "position.json"
+SKIN_FILE = "skin.json"
+
+
+anchor_x_ratio = 1.0
+anchor_y_ratio = 0.13
+
+def save_skin():
+    try:
+        with open(SKIN_FILE, "w") as f:
+            json.dump({"skin_index": skin_index}, f)
+    except Exception as e:
+        print("Failed to save skin:", e)
+
+
+def load_skin():
+    global skin_index
+
+    try:
+        with open(SKIN_FILE, "r") as f:
+            data = json.load(f)
+            skin_index = data.get("skin_index", 0)
+
+            if skin_index < 0 or skin_index >= len(skins):
+                skin_index = 0
+
+    except:
+        skin_index = 0
+
+def save_anchor_ratios():
+    try:
+        with open(POSITION_FILE, "w") as f:
+            json.dump({
+                "anchor_x_ratio": anchor_x_ratio,
+                "anchor_y_ratio": anchor_y_ratio
+            }, f)
+    except Exception as e:
+        print("Failed to save position:", e)
+
+def load_anchor_ratios():
+    global anchor_x_ratio, anchor_y_ratio
+
+    try:
+        with open(POSITION_FILE, "r") as f:
+            data = json.load(f)
+
+            anchor_x_ratio = data.get("anchor_x_ratio", 1.0)
+            anchor_y_ratio = data.get("anchor_y_ratio", 0.13)
+
+    except:
+        pass
 
 rpc = Client(client_id="1491710882495987824")
 def rpckeepalive():
@@ -57,6 +110,7 @@ window = None
 label = None
 sprite = None
 is_squished = False
+is_locked = True
 
 url = "https://raw.githubusercontent.com/hansyhansy14/destroyman-the-third/main/dist/resources/speeches.txt"
 skin_index = 0
@@ -71,10 +125,7 @@ skins = [
     "resources/skins/diii_monster.png",
     "resources/skins/diii_cisco.png"
 ]
-
-anchor_x_ratio = 1.0
-anchor_y_ratio = 0.13
-
+load_skin()
 
 def normalized_pixmap(path):
     pixmap = QtGui.QPixmap(path)
@@ -88,14 +139,20 @@ def normalized_pixmap(path):
 
 def cycle_back(icon=None, item=None):
     global skin_index, sprite
+
     skin_index = (skin_index - 1) % len(skins)
+    save_skin()
+
     sprite = normalized_pixmap(resource_path(skins[skin_index]))
     bob_squish()
 
 
 def cycle_forth(icon=None, item=None):
     global skin_index, sprite
+
     skin_index = (skin_index + 1) % len(skins)
+    save_skin()
+
     sprite = normalized_pixmap(resource_path(skins[skin_index]))
     bob_squish()
 
@@ -114,7 +171,8 @@ def bob_squish():
     anchor_x = int(screen_geom.width() * anchor_x_ratio) - window.width()
     anchor_y = int(screen_geom.height() * anchor_y_ratio)
 
-    window.move(anchor_x, anchor_y - height)
+    if is_locked:
+        window.move(anchor_x, anchor_y - height)
 
 
     if arms_timer is None:
@@ -261,12 +319,86 @@ else:
     fondamento_family = QtGui.QFontDatabase.applicationFontFamilies(font_id)[0]
 
 
-window = QtWidgets.QWidget()
+class DraggableWindow(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self._drag_pos = None
+
+    def mousePressEvent(self, event):
+        if not is_locked and event.button() == QtCore.Qt.MouseButton.LeftButton:
+            self._drag_pos = event.globalPosition().toPoint() - self.frameGeometry().topLeft() # store offset of click from top-left corner
+            event.accept()
+
+    def mouseMoveEvent(self, event):
+        if not is_locked and self._drag_pos is not None and event.buttons() == QtCore.Qt.MouseButton.LeftButton:
+            self.move(event.globalPosition().toPoint() - self._drag_pos) # move window to new position minus the original click offset
+            event.accept()
+
+    def mouseReleaseEvent(self, event):
+        global anchor_x_ratio, anchor_y_ratio
+
+        if event.button() == QtCore.Qt.MouseButton.LeftButton:
+
+            if not is_locked:
+                screen = app.primaryScreen() 
+                geom = screen.geometry()
+
+                anchor_x_ratio = ( # calculate ratio based on center of the sprite
+                    self.x() + self.width()
+                ) / geom.width()
+
+                anchor_y_ratio = ( # calculate ratio based on bottom of the sprite
+                    self.y() + 200
+                ) / geom.height()
+
+                save_anchor_ratios()
+
+            self._drag_pos = None
+            event.accept()
+
+def toggle_lock(icon=None, item=None):
+    global is_locked
+    is_locked = not is_locked
+
+    # rebuild flags based on new lock state
+    flags = (
+        QtCore.Qt.WindowType.FramelessWindowHint |
+        QtCore.Qt.WindowType.WindowStaysOnTopHint |
+        QtCore.Qt.WindowType.Tool
+    )
+    if is_locked:
+        flags |= QtCore.Qt.WindowType.WindowTransparentForInput
+
+    # setWindowFlags hides the window; re-show it
+    pos = window.pos()
+    window.setWindowFlags(flags)
+    window.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
+    window.move(pos)
+    window.show()
+
+    # rebuild the tray menu so the label updates
+    rebuild_tray_menu(icon)
+
+
+def rebuild_tray_menu(icon=None):
+    lock_label = "Lock Position" if not is_locked else "Unlock Position"
+    new_menu = Menu(
+        MenuItem("Quit", quit_app),
+        MenuItem(lock_label, toggle_lock),
+        MenuItem("Change Skin (Cycle Forward)", cycle_forth),
+        MenuItem("Change Skin (Cycle Back)", cycle_back),
+    )
+    if icon is not None:
+        icon.menu = new_menu
+        icon.update_menu()
+
+
+window = DraggableWindow()
 window.setWindowFlags(
     QtCore.Qt.WindowType.FramelessWindowHint |
     QtCore.Qt.WindowType.WindowStaysOnTopHint |
     QtCore.Qt.WindowType.Tool |
-    QtCore.Qt.WindowType.WindowTransparentForInput
+    QtCore.Qt.WindowType.WindowTransparentForInput  # starts locked
 )
 
 window.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
@@ -279,7 +411,8 @@ label.setPixmap(sprite)
 label.setFixedSize(200, 200)
 label.show()
 
-bob_squish()
+load_anchor_ratios()
+bob_squish()  # default spawn position
 
 window.show()
 window.raise_()
@@ -291,6 +424,7 @@ def create_tray_icon():
 
     menu = Menu(
         MenuItem("Quit", quit_app),
+        MenuItem("Unlock Position", toggle_lock),
         MenuItem("Change Skin (Cycle Forward)", cycle_forth),
         MenuItem("Change Skin (Cycle Back)", cycle_back),
     )
