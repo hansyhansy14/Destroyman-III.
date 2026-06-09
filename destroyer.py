@@ -26,7 +26,7 @@ anchor_y_ratio = 0.13
 def save_skin():
     try:
         with open(SKIN_FILE, "w") as f:
-            json.dump({"skin_index": skin_index}, f)
+            json.dump({"skin_index": skin_index}, f) 
     except Exception as e:
         print("Failed to save skin:", e)
 
