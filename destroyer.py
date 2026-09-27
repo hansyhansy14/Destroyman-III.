@@ -60,6 +60,7 @@ is_squished = False
 
 url = "https://raw.githubusercontent.com/hansyhansy14/destroyman-the-third/main/dist/resources/speeches.txt"
 skin_index = 0
+mirrored = False
 
 skins = [
     "resources/skins/diii_normal.png",
@@ -78,12 +79,32 @@ anchor_y_ratio = 0.13
 
 def normalized_pixmap(path):
     pixmap = QtGui.QPixmap(path)
-    return pixmap.scaled(
+    pixmap = pixmap.scaled(
         sprite_size[0],
         sprite_size[1],
         QtCore.Qt.AspectRatioMode.IgnoreAspectRatio,
         QtCore.Qt.TransformationMode.SmoothTransformation
     )
+
+    if mirrored:
+        pixmap = pixmap.transformed(
+            QtGui.QTransform().scale(-1, 1),
+            QtCore.Qt.TransformationMode.SmoothTransformation
+        )
+
+    return pixmap
+
+def mirror_sprite():
+    global mirrored, sprite
+
+    mirrored = not mirrored
+
+    sprite = sprite.transformed(
+        QtGui.QTransform().scale(-1, 1),
+        QtCore.Qt.TransformationMode.SmoothTransformation
+    )
+
+    label.setPixmap(sprite)
 
 
 def cycle_back(icon=None, item=None):
@@ -293,6 +314,7 @@ def create_tray_icon():
         MenuItem("Quit", quit_app),
         MenuItem("Change Skin (Cycle Forward)", cycle_forth),
         MenuItem("Change Skin (Cycle Back)", cycle_back),
+        MenuItem("Mirror Sprite", mirror_sprite)
     )
 
     icon = Icon("destroyman", image, "Destroyman III", menu)
