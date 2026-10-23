@@ -2,7 +2,6 @@ import sys
 from PyQt6 import QtWidgets, QtGui, QtCore
 import random
 import os
-import sys
 from pystray import Icon, Menu, MenuItem
 from PIL import Image
 import requests
@@ -41,6 +40,15 @@ def resource_path(relative_path):
         return os.path.join("dist", relative_path)
 
 
+def app_dir():
+    """Folder next to the exe (frozen) or next to this script."""
+    if getattr(sys, 'frozen', False):
+        return os.path.dirname(sys.executable)
+    return os.path.dirname(os.path.abspath(__file__))
+
+POSITION_FILE = os.path.join(app_dir(), "position.txt")
+
+
 def get_speeches(url):
     try:
         response = requests.get(url, timeout=5)
@@ -57,6 +65,15 @@ window = None
 label = None
 sprite = None
 is_squished = False
+
+drag_enabled = False   # "Drag Sprite" mode (window accepts mouse input)
+dragging = False       # true only while the mouse button is held down
+drag_offset = QtCore.QPoint(0, 0)
+SQUISH_SHIFT = 10      # the bob moves the window down this many px when squished
+
+# base_x / base_y = window top-left when NOT squished. This is what gets saved.
+base_x = 0
+base_y = 0
 
 url = "https://raw.githubusercontent.com/hansyhansy14/destroyman-the-third/main/dist/resources/speeches.txt"
 skin_index = 0
@@ -75,6 +92,99 @@ skins = [
 
 anchor_x_ratio = 1.0
 anchor_y_ratio = 0.13
+
+
+def squish_offset():
+    return SQUISH_SHIFT if is_squished else 0
+
+
+def default_position():
+    screen_geom = app.primaryScreen().geometry()
+    x = screen_geom.x() + int(screen_geom.width() * anchor_x_ratio) - 200
+    y = screen_geom.y() + int(screen_geom.height() * anchor_y_ratio) - 200
+    return x, y
+
+
+def load_position():
+    """returns (x, y) from position.txt, or None if missing/invalid/off-screen."""
+    try:
+        with open(POSITION_FILE, "r", encoding="utf-8") as f:
+            x_str, y_str = f.read().strip().split(",")
+            x, y = int(x_str), int(y_str)
+    except (OSError, ValueError):
+        return None
+
+    # make sure the sprite would actually be visible on some screen
+    sprite_rect = QtCore.QRect(x, y, 200, 200)
+    for screen in app.screens():
+        if screen.availableGeometry().intersects(sprite_rect):
+            return x, y
+    return None
+
+
+def save_position():
+    try:
+        with open(POSITION_FILE, "w", encoding="utf-8") as f:
+            f.write(f"{base_x},{base_y}")
+    except OSError as e:
+        print("failed to save position: ", e)
+
+
+class DraggableWindow(QtWidgets.QWidget):
+    def mousePressEvent(self, event):
+        global dragging, drag_offset
+        if drag_enabled and event.button() == QtCore.Qt.MouseButton.LeftButton:
+            dragging = True
+            drag_offset = event.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            event.accept()
+        else:
+            event.ignore()
+
+    def mouseMoveEvent(self, event):
+        global base_x, base_y
+        if dragging:
+            new_pos = event.globalPosition().toPoint() - drag_offset
+            self.move(new_pos)
+            base_x = new_pos.x()
+            base_y = new_pos.y() - squish_offset()
+            event.accept()
+        else:
+            event.ignore()
+
+    def mouseReleaseEvent(self, event):
+        global dragging
+        if dragging and event.button() == QtCore.Qt.MouseButton.LeftButton:
+            dragging = False
+            save_position()
+            event.accept()
+        else:
+            event.ignore()
+
+
+def apply_window_flags():
+    """make the window click-through (normal) or grabbable (drag mode)."""
+    flags = (
+        QtCore.Qt.WindowType.FramelessWindowHint |
+        QtCore.Qt.WindowType.WindowStaysOnTopHint |
+        QtCore.Qt.WindowType.Tool
+    )
+    if not drag_enabled:
+        flags |= QtCore.Qt.WindowType.WindowTransparentForInput
+
+    pos = window.pos()
+    window.setWindowFlags(flags) # vvv resetting flags hides window so we need to show it again vvv
+    window.move(pos)
+    window.show()                # here
+    window.raise_()
+
+
+def toggle_drag_mode():
+    global drag_enabled, dragging
+    drag_enabled = not drag_enabled
+    if not drag_enabled and dragging:
+        dragging = False
+        save_position()
+    apply_window_flags()
 
 
 def normalized_pixmap(path):
@@ -124,18 +234,15 @@ def cycle_forth(icon=None, item=None):
 def bob_squish():
     global is_squished, sprite, window, label
 
+
     is_squished = not is_squished
 
     width = 200
     height = 200 if not is_squished else 190
 
-    screen = app.primaryScreen()
-    screen_geom = screen.geometry()
-
-    anchor_x = int(screen_geom.width() * anchor_x_ratio) - window.width()
-    anchor_y = int(screen_geom.height() * anchor_y_ratio)
-
-    window.move(anchor_x, anchor_y - height)
+    # don't yank the window out of the user's hand while dragging 'cause that kept happening hahu
+    if not dragging:
+        window.move(base_x, base_y + squish_offset())
 
 
     if arms_timer is None:
@@ -268,6 +375,15 @@ def spawn_text():
 app = QtWidgets.QApplication(sys.argv)
 
 
+class Bridge(QtCore.QObject):
+    """pystray calls menu callbacks from its own thread; Qt widgets must only be
+    touched from the main thread. emitting a signal queues the call onto it."""
+    toggle_drag = QtCore.pyqtSignal()
+
+bridge = Bridge()
+bridge.toggle_drag.connect(toggle_drag_mode)
+
+
 def quit_app(icon, item):
     icon.stop()
     QtCore.QTimer.singleShot(0, app.quit)
@@ -282,7 +398,7 @@ else:
     fondamento_family = QtGui.QFontDatabase.applicationFontFamilies(font_id)[0]
 
 
-window = QtWidgets.QWidget()
+window = DraggableWindow()
 window.setWindowFlags(
     QtCore.Qt.WindowType.FramelessWindowHint |
     QtCore.Qt.WindowType.WindowStaysOnTopHint |
@@ -292,6 +408,10 @@ window.setWindowFlags(
 
 window.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
 window.setFixedSize(200, 400)
+
+# restore the saved position, or fall back to the default top-right anchor
+saved = load_position()
+base_x, base_y = saved if saved else default_position()
 
 sprite = normalized_pixmap(resource_path(skins[skin_index]))
 
@@ -314,7 +434,12 @@ def create_tray_icon():
         MenuItem("Quit", quit_app),
         MenuItem("Change Skin (Cycle Forward)", cycle_forth),
         MenuItem("Change Skin (Cycle Back)", cycle_back),
-        MenuItem("Mirror Sprite", mirror_sprite)
+        MenuItem("Mirror Sprite", mirror_sprite),
+        MenuItem(
+            "Drag Sprite",
+            lambda icon, item: bridge.toggle_drag.emit(),
+            checked=lambda item: drag_enabled
+        )
     )
 
     icon = Icon("destroyman", image, "Destroyman III", menu)
