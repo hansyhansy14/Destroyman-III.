@@ -71,6 +71,10 @@ dragging = False       # true only while the mouse button is held down
 drag_offset = QtCore.QPoint(0, 0)
 SQUISH_SHIFT = 10      # the bob moves the window down this many px when squished
 
+# :3
+funny_mode = False
+FUNNY_SKIN = "resources/skins/funny.png"
+
 # base_x / base_y = window top-left when NOT squished. This is what gets saved.
 base_x = 0
 base_y = 0
@@ -187,6 +191,28 @@ def toggle_drag_mode():
     apply_window_flags()
 
 
+def toggle_funny_mode():
+    global funny_mode, is_squished
+    funny_mode = not funny_mode
+
+    if funny_mode:
+        # shut the FUCK UP: stop everything and clear any speech bubble that's showing
+        stop_arms_dc()
+        for child in window.findChildren(QtWidgets.QLabel):
+            if child is not label:
+                child.deleteLater()
+
+        # freeze in the un-squished position
+        is_squished = False
+        if not dragging:
+            window.move(base_x, base_y)
+        label.setPixmap(normalized_pixmap(resource_path(FUNNY_SKIN)))
+    else:
+        # back to the real skin; bob_squish() resumes from here
+        label.setPixmap(sprite)
+        bob_squish()
+
+
 def normalized_pixmap(path):
     pixmap = QtGui.QPixmap(path)
     pixmap = pixmap.scaled(
@@ -214,7 +240,10 @@ def mirror_sprite():
         QtCore.Qt.TransformationMode.SmoothTransformation
     )
 
-    label.setPixmap(sprite)
+    if funny_mode:
+        label.setPixmap(normalized_pixmap(resource_path(FUNNY_SKIN)))
+    else:
+        label.setPixmap(sprite)
 
 
 def cycle_back(icon=None, item=None):
@@ -234,6 +263,9 @@ def cycle_forth(icon=None, item=None):
 def bob_squish():
     global is_squished, sprite, window, label
 
+    # ":3" mode is entirely still
+    if funny_mode:
+        return
 
     is_squished = not is_squished
 
@@ -289,6 +321,12 @@ first_message_shown = False
 
 def spawn_text():
     global first_message_shown, sprite
+
+    # ":3" mode says nothing, but keep the schedule going so he talks again once it's off
+    if funny_mode:
+        QtCore.QTimer.singleShot(random.randint(20000, 30000), spawn_text)
+        return
+
     text_label = QtWidgets.QLabel(window)
 
     restore_sprite = None
@@ -364,7 +402,9 @@ def spawn_text():
         text_label.deleteLater()
         if restore_sprite is not None:
             sprite = restore_sprite
-            label.setPixmap(sprite)
+            # don't overwrite funny.png if ":3" was switched on while he was talking
+            if not funny_mode:
+                label.setPixmap(sprite)
 
     QtCore.QTimer.singleShot(10000, resetsmile)
 
@@ -379,9 +419,11 @@ class Bridge(QtCore.QObject):
     """pystray calls menu callbacks from its own thread; Qt widgets must only be
     touched from the main thread. emitting a signal queues the call onto it."""
     toggle_drag = QtCore.pyqtSignal()
+    toggle_funny = QtCore.pyqtSignal()
 
 bridge = Bridge()
 bridge.toggle_drag.connect(toggle_drag_mode)
+bridge.toggle_funny.connect(toggle_funny_mode)
 
 
 def quit_app(icon, item):
@@ -439,6 +481,11 @@ def create_tray_icon():
             "Drag Sprite",
             lambda icon, item: bridge.toggle_drag.emit(),
             checked=lambda item: drag_enabled
+        ),
+        MenuItem(
+            ":3",
+            lambda icon, item: bridge.toggle_funny.emit(),
+            checked=lambda item: funny_mode
         )
     )
 
