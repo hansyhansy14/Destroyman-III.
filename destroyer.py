@@ -8,29 +8,8 @@ import requests
 import time
 from pypresence import Client
 import threading
-
-rpc = Client(client_id="1491710882495987824")
-def rpckeepalive():
-    rpc.start()
-    # keep alive
-    while True:
-        time.sleep(15)
-
-def rpcsend(randomtext):
-    rpc.send_data(1, {
-        "cmd": "SET_ACTIVITY",
-        "args": {
-            "pid": 10000,
-            "activity": {
-                "details": f"{randomtext}",
-                "assets": {
-                    "large_image": "diii_evil", 
-                    "large_text": "I am a huge annoyance!"
-                }
-            }
-        },
-        "nonce": "1"
-    })
+import sounddevice as sd
+import numpy as np
 
 def resource_path(relative_path):
     if getattr(sys, 'frozen', False):
@@ -58,7 +37,7 @@ def get_speeches(url):
     except Exception as e:
         print("failed to fetch speeches.txt: ", e)
         return None
-
+        
 
 sprite_size = (200, 200)
 window = None
@@ -74,6 +53,13 @@ SQUISH_SHIFT = 10      # the bob moves the window down this many px when squishe
 # :3
 funny_mode = False
 FUNNY_SKIN = "resources/skins/funny.png"
+FUNNY_TALKING_SKIN = "resources/skins/funnytalking.png"
+
+# Microphone activity detection (uses the current Windows default input device).
+MIC_THRESHOLD = 0.015       # Increase this if background noise triggers it.
+MIC_RELEASE_THRESHOLD = 0.008  # Lower threshold prevents rapid flickering.
+MIC_BLOCK_SIZE = 512
+mic_is_talking = False
 
 # base_x / base_y = window top-left when NOT squished. This is what gets saved.
 base_x = 0
@@ -206,7 +192,8 @@ def toggle_funny_mode():
         is_squished = False
         if not dragging:
             window.move(base_x, base_y)
-        label.setPixmap(normalized_pixmap(resource_path(FUNNY_SKIN)))
+        funny_path = FUNNY_TALKING_SKIN if mic_is_talking else FUNNY_SKIN
+        label.setPixmap(normalized_pixmap(resource_path(funny_path)))
     else:
         # back to the real skin; bob_squish() resumes from here
         label.setPixmap(sprite)
@@ -241,7 +228,8 @@ def mirror_sprite():
     )
 
     if funny_mode:
-        label.setPixmap(normalized_pixmap(resource_path(FUNNY_SKIN)))
+        funny_path = FUNNY_TALKING_SKIN if mic_is_talking else FUNNY_SKIN
+        label.setPixmap(normalized_pixmap(resource_path(funny_path)))
     else:
         label.setPixmap(sprite)
 
@@ -412,6 +400,59 @@ def spawn_text():
     QtCore.QTimer.singleShot(delay, spawn_text)
 
 
+def set_microphone_activity(active):
+    """update sprite to talking sprite if mic activity is detected"""
+    global mic_is_talking
+    if active == mic_is_talking:
+        return
+
+    mic_is_talking = active
+
+    if funny_mode:
+        path = FUNNY_TALKING_SKIN if mic_is_talking else FUNNY_SKIN
+        label.setPixmap(normalized_pixmap(resource_path(path)))
+
+
+def microphone_callback(indata, frames, callback_time, status):
+    """runs on sounddevice's audio thread; do not touch Qt widgets here"""
+    if status:
+        print("Microphone:", status)
+
+    rms = float(np.sqrt(np.mean(np.square(indata, dtype=np.float32))))
+    threshold = MIC_RELEASE_THRESHOLD if mic_is_talking else MIC_THRESHOLD
+    bridge.microphone_activity.emit(rms >= threshold)
+
+
+def start_microphone_monitor():
+    """listen to the Windows default microphone input device"""
+    try:
+        device = sd.default.device[0]
+        if device is None or device < 0:
+            print("no default microphone input device is configured")
+            return None
+
+        device_info = sd.query_devices(device, "input")
+        channels = 1
+        sample_rate = int(device_info["default_samplerate"])
+
+        stream = sd.InputStream(
+            device=device,
+            samplerate=sample_rate,
+            channels=channels,
+            blocksize=MIC_BLOCK_SIZE,
+            dtype="float32",
+            callback=microphone_callback
+        )
+        stream.start()
+        print(f"microphone monitoring enabled: {device_info['name']}")
+        return stream
+
+    except Exception as e:
+        print("could not start microphone monitoring:", e)
+        return None
+
+
+
 app = QtWidgets.QApplication(sys.argv)
 
 
@@ -420,10 +461,12 @@ class Bridge(QtCore.QObject):
     touched from the main thread. emitting a signal queues the call onto it."""
     toggle_drag = QtCore.pyqtSignal()
     toggle_funny = QtCore.pyqtSignal()
+    microphone_activity = QtCore.pyqtSignal(bool)
 
 bridge = Bridge()
 bridge.toggle_drag.connect(toggle_drag_mode)
 bridge.toggle_funny.connect(toggle_funny_mode)
+bridge.microphone_activity.connect(set_microphone_activity)
 
 
 def quit_app(icon, item):
@@ -464,9 +507,12 @@ label.show()
 
 bob_squish()
 
+mic_stream = start_microphone_monitor()
+
 window.show()
 window.raise_()
 window.activateWindow()
+
 
 
 def create_tray_icon():
@@ -499,9 +545,6 @@ tray_icon = create_tray_icon()
 bob_timer = QtCore.QTimer()
 bob_timer.timeout.connect(bob_squish)
 bob_timer.start(1000)
-
-thread = threading.Thread(target=rpckeepalive, daemon=True)
-thread.start()
 
 QtCore.QTimer.singleShot(5000, spawn_text)
 
